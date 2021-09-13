@@ -47,30 +47,29 @@ Route<dynamic>? parseRouteUri(Routes routes, RouteSettings settings) {
         continue;
       }
 
-      bool? matches;
+      bool matches = true;
       final Map<String, String> namedParams = {};
 
       for (var i in segments.asMap().keys) {
-        if (matches == false) continue;
-
         final isDynamic = RegExp(r":\w{1,}").hasMatch(parts[i]);
 
         matches = segments[i] == parts[i] || isDynamic;
+
+        if (!matches) break;
 
         if (matches && isDynamic) {
           final name = parts[i].substring(1);
           final value = segments[i];
           namedParams[name] = value;
         }
+      }
 
-        if (i == parts.length - 1 && matches == true) {
-          // at last segment and fully matched
-          namedParams.addAll(params);
+      if (matches) {
+        namedParams.addAll(params);
 
-          return MaterialPageRoute(
-              builder: routes[route]!,
-              settings: settings.copyWith(arguments: namedParams, name: path));
-        }
+        return MaterialPageRoute(
+            builder: routes[route]!,
+            settings: settings.copyWith(arguments: namedParams, name: path));
       }
     }
   }
