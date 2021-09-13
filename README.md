@@ -1,3 +1,5 @@
+[Example Project](https://github.com/brookesb91/view_router_demo)
+
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
