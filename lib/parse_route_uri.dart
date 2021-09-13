@@ -5,16 +5,21 @@ import 'package:view_router/routes.dart';
 /// the page route, supplying the parameters as arguments.
 ///
 /// Example:
+/// for route config: `/profile`,
+/// path: `/profile?id=123`,
 ///
-/// Initial route settings:
-///
-/// name: `/profile?id=123`,
-/// arguments: `null`
-///
-/// After:
+/// Becomes:
 ///
 /// name: `/profile`,
 /// arguments: `{ id: '123' }`
+///
+/// for route config: `/profile/:id`,
+/// path: `/profile/123`
+///
+/// Becomes:
+///
+/// name: `/profile/:id`,
+/// arguments: `{ 'id': 123 }`
 Route<dynamic>? parseRouteUri(Routes routes, RouteSettings settings) {
   final Uri uri = Uri.parse(settings.name ?? '/');
   final Map<String, String> params = uri.queryParameters;
