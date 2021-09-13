@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 /// }
 /// ```
 Widget view(
-    BuildContext context, Widget Function(Map<String, String>) builder) {
+    BuildContext context, Widget Function(Map<String, String> params) builder) {
   final args =
       ModalRoute.of(context)!.settings.arguments as Map<String, String>;
   return builder.call(args);

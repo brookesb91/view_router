@@ -14,5 +14,6 @@ class ViewRouter {
 
   ViewRouter({required this.routes});
 
-  call(RouteSettings settings) => parseRouteUri(routes, settings);
+  Route<dynamic>? call(RouteSettings settings) =>
+      parseRouteUri(routes, settings);
 }

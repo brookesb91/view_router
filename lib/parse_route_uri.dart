@@ -37,11 +37,10 @@ Route<dynamic>? parseRouteUri(Routes routes, RouteSettings settings) {
 
     routesWithNamedParams.sort((a, b) => a.length.compareTo(b.length));
 
-    // RegExp(r"^:\w{1,}") for finding named parameters in paths.
     final segments = path.split('/').toList();
 
     for (var route in routesWithNamedParams) {
-      final parts = route.split('/');
+      final parts = route.split('/').toList();
 
       if (parts.length != segments.length) {
         // Lengths do not match.
@@ -66,11 +65,11 @@ Route<dynamic>? parseRouteUri(Routes routes, RouteSettings settings) {
 
         if (i == parts.length - 1 && matches == true) {
           // at last segment and fully matched
-          params.addAll(namedParams);
+          namedParams.addAll(params);
 
           return MaterialPageRoute(
               builder: routes[route]!,
-              settings: settings.copyWith(arguments: params, name: route));
+              settings: settings.copyWith(arguments: namedParams, name: path));
         }
       }
     }
