@@ -52,6 +52,24 @@ Navigate using the navigator.
 Navigator.of(context).pushNamed('/profile');
 ```
 
+### Using Named Parameters
+
+> `view` is a convenience function for defining a builder with access to all named and query route parameters. View builders have the signature `Widget Function(BuildContext, Widget Function(Map<String, String>))`
+
+```dart
+final Routes routes = {
+  // Home route
+  '/': (context) => view(context, (_) => HomePage()),
+  // List route
+  '/items': (context) => view(context, (_) => ItemsPage()),
+  // List item route
+  // Named parameters are prefixed with a `:`.
+  // The value with the specified name will be added to `params`.
+  '/items/:item_id': (context) =>
+    view(context, (params) => ItemPage(id: params['item_id']))
+}
+```
+
 ## Additional information
 
 TODO
