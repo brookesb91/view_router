@@ -70,6 +70,34 @@ final Routes routes = {
 }
 ```
 
+Navigating to a route with a named parameter.
+
+```dart
+Navigator.of(context).pushNamed('/items/${item.id}');
+```
+
+### Using Query Parameters
+
+```dart
+final Routes routes = {
+  // Home route
+  '/': (context) => view(context, (_) => HomePage()),
+  // `item_id` is satisfied by a query parameter if present.
+  // eg. `/items?item_id=123`
+  //
+  // Widgets should allow for a nullable value and the UI
+  // respond accordingly.
+  '/items': (context) =>
+    view(context, (params) => ItemsPage(selectedItemId: params['item_id']))
+}
+```
+
+Navigating to a route with query parameters.
+
+```dart
+Navigator.of(context).pushNamed('/items?item_id=${item.id}');
+```
+
 ## Additional information
 
 TODO
