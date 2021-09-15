@@ -4,7 +4,14 @@ A view router library for Flutter apps.
 
 ## Features
 
-TODO
+Parses named routes and provides named parameters and query parameters as arguments for widget building.
+
+| Route                    | Config            | Result                                                               |
+| ------------------------ | ----------------- | -------------------------------------------------------------------- |
+| `/`                      | `/`               | `{name: '/', params: {}}`                                            |
+| `/items?item_id=123`     | `/items`          | `{name: '/items', params: {'item_id': '123'}}`                       |
+| `/items/123`             | `/items/:item_id` | `{name: '/items/123', params: {'item_id': '123'}}`                   |
+| `/items/123?tab=details` | `/items/:item_id` | `{name: '/items/123', params: {'item_id': '123', 'tab': 'details'}}` |
 
 ## Getting started
 
@@ -15,8 +22,6 @@ view_router:
   git:
     url: git://github.com/brookesb91/view_router.git
 ```
-
-## Usage
 
 ### Basic Usage
 
@@ -97,7 +102,3 @@ Navigating to a route with query parameters.
 ```dart
 Navigator.of(context).pushNamed('/items?item_id=${item.id}');
 ```
-
-## Additional information
-
-TODO
